@@ -1,0 +1,117 @@
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb"  style="background-color:#e9ecef; padding:0.5rem; border-radius:0.25rem;" >
+    <li class="breadcrumb-item"><a href="#"   style="color:#004085;"   >Home</a></li>
+    <li class="breadcrumb-item"><a href="#"   style="color:#004085;"    >Ubicacion</a></li>
+    <li class="breadcrumb-item active" aria-current="page"   style="color:#6c757d;" >Listado</li>
+  </ol>
+</nav>
+
+<p class="title-forms"    style="color:#004085; font-weight:bold;"  >Ubicaciones</p>
+
+  <form [formGroup]="frmUbicacion" >
+<div class="row">
+  <div class="col-sm-6">
+       <div class="form-group">
+       <label for="nombre">Encontrar(Departamento/Provincia/Distrito)</label>
+       <input type="text" formControlName="nombre"  class="form-control" id="nombre" placeholder="">
+       </div>
+  </div>
+
+<div class="col-sm-6">
+
+  <button class="btn btn-primary" (click)="buscar()">Buscar</button>
+      <button class="btn btn-secondary" (click)="limpiar()">Limpiar</button>
+      <button class="btn btn-info" (click)="nuevo()">Nuevo</button>
+</div>
+</div>
+</form>
+
+   <table class="table table-striped-columns">
+    <thead>
+      <tr style="background-color:#004085; color:#fff; text-align:center;">
+            <th  scope="col">Id</th>
+            <th scope="col"  >Departamento</th>
+            <th scope="col" >Provincia</th>
+            <th scope="col">Distrito</th>
+            <th scope="col">Estado</th>
+            <th scope="col" style="text-align: center">Acción</th>
+            </tr>
+
+    </thead>
+   <tbody>
+  @for (u of ubicacionesPagina; track $index) {
+  <tr style="background-color:#f8f9fa;">
+      <td scope="row">{{ u.id }}</td>
+      <td>{{ u.departamento }}</td>
+      <td>{{ u.provincia }}</td>
+      <td>{{ u.distrito }}</td>
+       <td>{{ u.estado }}</td>
+          <td style="text-align: center">
+          <button
+            type="button"
+            title="Eliminar ubicacion"
+              class="btn custom-btn-icon me-2"(click)="delete(u)"
+
+       style="background-color:#6f42c1; border-color:#5a32a3; color:#fff;"
+         >
+
+            <i class="bi bi-trash"></i>
+          </button>
+          <button
+            type="button"
+            title="Ver detalle de esta ubicacion"
+             class="btn custom-btn-icon me-2"
+    (click)="verDetalle(u, template)"
+    style="background-color:#17a2b8; border-color:#117a8b; color:#fff;"
+  >
+            <i class="bi bi-ticket-detailed"></i>
+          </button>
+          <button
+            type="button"
+            title="Modificar la ubicacion seleccionada"
+            class="btn custom-btn-icon me-2"
+    (click)="delete(u)"
+    style="background-color:#007bff; border-color:#0056b3; color:#fff;"
+  >
+            <i class="bi bi-pen"></i>
+          </button>
+        </td>
+      </tr>
+    }
+  </tbody>
+
+  <tfoot></tfoot>
+</table>
+<div class="row">
+  <div class="col-xs-12 col-12">
+    <pagination [totalItems]="ubicaciones.length" (pageChanged)="pageChanged($event)"></pagination>
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Detalle de ubicacion - Id: {{ubicacionSelected?.id}}</h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="card" style="width: 18rem">
+
+      <div class="card-body">
+        <h5 class="card-title">{{ubicacionSelected?.departamento}}</h5>
+        <p class="card-text">
+         {{ubicacionSelected?.provincia}}
+             {{ubicacionSelected?.distrito}}
+        </p>
+        <a href="#" class="btn btn-primary">Aplicar</a>
+      </div>
+    </div>
+  </div>
+</ng-template>

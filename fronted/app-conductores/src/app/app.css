@@ -1,0 +1,13 @@
+/* styles.scss */
+
+/* Fuente y fondo general */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f6f9;
+}
+
+/* Botones en toda la aplicación */
+.btn {
+  border-radius: 6px;
+  font-size: 0.9rem;
+}

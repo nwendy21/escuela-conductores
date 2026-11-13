@@ -1,0 +1,64 @@
+/* ubicacion-listado.component.css */
+
+/* Breadcrumb */
+.breadcrumb {
+  background-color: #e9ecef;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+}
+.breadcrumb-item a {
+  color: #004085;
+  text-decoration: none;
+}
+.breadcrumb-item.active {
+  color: #6c757d;
+}
+
+/* Título */
+.title-forms {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #004085;
+  margin-bottom: 1rem;
+}
+
+/* Tabla */
+.table-striped-columns th {
+  background-color: #004085;
+  color: #fff;
+  text-align: center;
+}
+.table-striped-columns td {
+  background-color: #f8f9fa;
+}
+
+/* Botones */
+.btn-primary.custom-btn {
+  background-color: #0069d9;
+  border-color: #0056b3;
+}
+.btn-secondary.custom-btn {
+  background-color: #6c757d;
+  border-color: #545b62;
+}
+.btn-success.custom-btn {
+  background-color: #28a745;
+  border-color: #1e7e34;
+}
+.btn-danger.custom-btn-icon {
+  background-color: #dc3545;
+  border-color: #bd2130;
+}
+.btn-warning.custom-btn-icon {
+  background-color: #ffc107;
+  border-color: #e0a800;
+}
+
+/* Modal */
+.modal-header {
+  background-color: #004085;
+  color: #fff;
+}
+.card {
+  border: 1px solid #004085;
+}

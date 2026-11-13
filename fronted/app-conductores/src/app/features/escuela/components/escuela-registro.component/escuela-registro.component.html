@@ -1,0 +1,124 @@
+<p>categoria-registro.component works!</p>
+<div class="container">
+<form [formGroup]="frmEscuela" >
+    <div class="row">
+    <div class="col-sm-10">
+      <div class="form-group">
+        <label for="ubicacionId">Ubicación</label>
+        <select class="form-select"  formControlName="ubicacionId"  id="ubicacionId"
+        [ngClass]="{
+            'is-invalid':
+              fp['ubicacionId'].invalid &&
+              (fp['ubicacionId'].touched || submitted)
+          }"
+        >
+          <option value="">--seleccione Ubicacion--</option>
+          @for (ubicaciones of ubicacion; track $index) {
+          <option value={{ubicaciones.id}}>  {{ubicaciones.departamento}} - {{ubicaciones.provincia}} - {{ubicaciones.distrito}}</option>
+          }
+      </select>
+          @if (fp['ubicacionId'].hasError('required')) {
+          <div class="invalid-feedback">La ubicacion es requerida.</div>
+          }
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-10">
+      <div class="form-group">
+        <label for="nombre">Nombre de Escuela </label>
+        <input type="text"
+          formControlName="nombre"
+          class="form-control"
+          id="nombre" placeholder=""
+          [ngClass]="{'is-invalid':fp['nombre'].invalid &&(fp['nombre'].touched || submitted)}"/>
+          @if (fp['nombre'].hasError('required')) {
+          <div class="invalid-feedback">El nombre es requerido.</div>
+          } @if (fp['nombre'].hasError('minlength')) {
+          <div class="invalid-feedback">
+            El nombre de escuela debe tener mínimo
+            {{ fp['nombre'].errors?.['minlength']?.requiredLength }}
+            caracteres.
+          </div>
+          } @if (fp['nombre'].hasError('maxlength')) {
+          <div class="invalid-feedback">
+              El nombre de escuela debe tener como máximo
+            {{ fp['nombre'].errors?.['maxlength']?.requiredLength }}
+            caracteres.
+          </div>
+          }
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-10">
+      <div class="form-group">
+        <label for="ruc">Ruc</label>
+      <input
+        type="text"
+        formControlName="ruc"
+        class="form-control"
+        id="ruc"
+        maxlength="11"
+        inputmode="numeric"
+        pattern="[0-9]*"
+          [ngClass]="{
+            'is-invalid':
+              fp['ruc'].invalid &&
+              (fp['ruc'].touched || submitted)
+          }">
+          @if (fp['ruc'].hasError('required')) {
+          <div class="invalid-feedback">El ruc es requerido.</div>
+          } @if (fp['ruc'].hasError('minlength')) {
+          <div class="invalid-feedback">
+            El ruc debe tener mínimo
+            {{ fp['ruc'].errors?.['minlength']?.requiredLength }}
+            caracteres.
+          </div>
+          } @if (fp['ruc'].hasError('maxlength')) {
+          <div class="invalid-feedback">
+           El ruc debe tener como máximo
+            {{ fp['ruc'].errors?.['maxlength']?.requiredLength }}
+            caracteres.
+          </div>
+          }
+
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-5">
+    <div class="form-group">
+      <label for="direccion">Direccion</label>
+      <input type="text"
+        formControlName="direccion"
+        class="form-control"
+        id="direccion" placeholder=""
+        [ngClass]="{
+            'is-invalid':
+              fp['direccion'].invalid &&
+              (fp['direccion'].touched || submitted)
+          }"/>
+           @if (fp['direccion'].hasError('required')) {
+          <div class="invalid-feedback">La direccion es requerida.</div>
+          } @if (fp['direccion'].hasError('min')) {
+          <div class="invalid-feedback">
+           La direccion debe tener como valor mínimo
+            {{ fp['direccion'].errors?.['min']?.value }}
+          </div>
+          } @if (fp['direccion'].hasError('max')) {
+          <div class="invalid-feedback">
+           La direccion debe tener como valor máximo
+            {{ fp['direccion'].errors?.['max']?.value }} caracteres
+               </div>
+            }
+      </div>
+     </div>
+
+  </div>
+  <button type="button" class="btn btn-primary" (click)="save()" >Save</button>
+  <button type="button" class="btn btn-secondary" (click)="cancelar()" >Cancel</button>
+</form>
+</div>
+
